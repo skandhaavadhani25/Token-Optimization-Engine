@@ -1,0 +1,121 @@
+[
+  {
+    "query": "Optimize Session.send",
+    "task": "Optimize Session.send to reduce dispatch overhead and streamline adapter delegation.",
+    "expected_target": "src.requests.sessions.Session.send",
+    "must_see": [
+      "src.requests.sessions.Session.send",
+      "src.requests.utils.resolve_proxies",
+      "src.requests.hooks.dispatch_hook"
+    ],
+    "notes": "Core request dispatch method in sessions.py; relies on proxy resolution in utils.py and hook dispatch."
+  },
+  {
+    "query": "Fix bug in PreparedRequest.prepare_url",
+    "task": "Fix URL query parameter encoding and fragment preservation in PreparedRequest.prepare_url.",
+    "expected_target": "src.requests.models.PreparedRequest.prepare_url",
+    "must_see": [
+      "src.requests.models.PreparedRequest.prepare_url",
+      "src.requests.utils.to_key_val_list"
+    ],
+    "notes": "URL preparation in models.py; uses to_key_val_list utility to serialize params."
+  },
+  {
+    "query": "Explain how HTTPDigestAuth builds challenge response headers",
+    "task": "Explain how MD5 and SHA-256 digest hashes and nonce counts are formatted in HTTPDigestAuth.build_digest_header.",
+    "expected_target": "src.requests.auth.HTTPDigestAuth.build_digest_header",
+    "must_see": [
+      "src.requests.auth.HTTPDigestAuth.build_digest_header",
+      "src.requests.auth.HTTPDigestAuth"
+    ],
+    "notes": "Complex cryptographic header constructor in auth.py."
+  },
+  {
+    "query": "Refactor default_user_agent construction",
+    "task": "Refactor default_user_agent in utils.py to include runtime platform tags alongside package version.",
+    "expected_target": "src.requests.utils.default_user_agent",
+    "must_see": [
+      "src.requests.utils.default_user_agent"
+    ],
+    "notes": "Simple utility function in utils.py returning the default User-Agent string."
+  },
+  {
+    "query": "Explain how cookies are extracted into the jar after a response",
+    "task": "Explain the response cookie extraction flow in extract_cookies_to_jar and MockResponse adaptation.",
+    "expected_target": "src.requests.cookies.extract_cookies_to_jar",
+    "must_see": [
+      "src.requests.cookies.extract_cookies_to_jar",
+      "src.requests.cookies.MockResponse"
+    ],
+    "notes": "Cookie adaptation in cookies.py wrapping response objects into standard http.cookiejar format."
+  },
+  {
+    "query": "Resolve proxies for environment and session settings",
+    "task": "Refactor resolve_proxies to support custom environment variables and bypass rules for localhost.",
+    "expected_target": "src.requests.utils.resolve_proxies",
+    "must_see": [
+      "src.requests.utils.resolve_proxies",
+      "src.requests.sessions.Session.send"
+    ],
+    "notes": "Cross-file dependency: resolve_proxies lives in utils.py and is invoked directly by Session.send."
+  },
+  {
+    "query": "Optimize HTTPAdapter connection pooling and TLS context setup",
+    "task": "Optimize connection pool caching and TLS certificate verification in HTTPAdapter.",
+    "expected_target": "src.requests.adapters.HTTPAdapter.get_connection_with_tls_context",
+    "must_see": [
+      "src.requests.adapters.HTTPAdapter.get_connection_with_tls_context",
+      "src.requests.adapters.HTTPAdapter.cert_verify"
+    ],
+    "notes": "Network connection management in adapters.py configuring urllib3 pools and SSL contexts."
+  },
+  {
+    "query": "Fix redirect handling for circular redirects and relative URLs",
+    "task": "Prevent infinite redirect loops and handle relative location headers in SessionRedirectMixin.resolve_redirects.",
+    "expected_target": "src.requests.sessions.SessionRedirectMixin.resolve_redirects",
+    "must_see": [
+      "src.requests.sessions.SessionRedirectMixin.resolve_redirects",
+      "src.requests.sessions.SessionRedirectMixin.is_redirect"
+    ],
+    "notes": "Redirect resolution generator in sessions.py processing status codes 301, 302, 303, 307, 308."
+  },
+  {
+    "query": "Automatically decode response body content based on encoding",
+    "task": "Explain how response body bytes in Response.content are decoded into unicode in Response.text.",
+    "expected_target": "src.requests.models.Response.text",
+    "must_see": [
+      "src.requests.models.Response.text",
+      "src.requests.models.Response.content"
+    ],
+    "notes": "Vague concept query: tests semantic retrieval on property-based response decoding in models.py."
+  },
+  {
+    "query": "Explain netrc authentication lookup in get_netrc_auth",
+    "task": "Explain how host credentials are discovered and parsed from ~/.netrc files in get_netrc_auth.",
+    "expected_target": "src.requests.utils.get_netrc_auth",
+    "must_see": [
+      "src.requests.utils.get_netrc_auth"
+    ],
+    "notes": "Credential parsing logic in utils.py parsing netrc format with exception safety."
+  },
+  {
+    "query": "Refactor dispatch_hook event notification",
+    "task": "Add exception logging and error recovery to hook callbacks inside dispatch_hook in hooks.py.",
+    "expected_target": "src.requests.hooks.dispatch_hook",
+    "must_see": [
+      "src.requests.hooks.dispatch_hook",
+      "src.requests.hooks.default_hooks"
+    ],
+    "notes": "Hook execution helper in hooks.py iterating through event callbacks."
+  },
+  {
+    "query": "Prepare authorization credentials for PreparedRequest",
+    "task": "Implement token-based authentication fallback in PreparedRequest.prepare_auth delegating to auth handlers.",
+    "expected_target": "src.requests.models.PreparedRequest.prepare_auth",
+    "must_see": [
+      "src.requests.models.PreparedRequest.prepare_auth",
+      "src.requests.auth.HTTPBasicAuth"
+    ],
+    "notes": "Cross-file task: prepare_auth in models.py bridges to HTTPBasicAuth in auth.py."
+  }
+]

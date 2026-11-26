@@ -1,0 +1,46 @@
+{
+  "retrieve": [
+    "retrieval",
+    "retrieval.query",
+    "retrieval.intent",
+    "retrieval.target",
+    "retrieval.target_confidence",
+    "retrieval.candidates",
+    "context",
+    "context.text",
+    "context.tokens",
+    "context.budget_total",
+    "context.utilization",
+    "context.items",
+    "context.files_included"
+  ],
+  "candidate": [
+    "ref",
+    "score",
+    "entity_type",
+    "file",
+    "match_type"
+  ],
+  "ask_dry_run": [
+    "query",
+    "dry_run",
+    "system_prompt",
+    "messages",
+    "token_report",
+    "token_report.context_tokens",
+    "token_report.budget",
+    "token_report.utilization",
+    "token_report.files_in_context",
+    "token_report.files_in_repo",
+    "token_report.total_seconds",
+    "context",
+    "context.text",
+    "context.tokens"
+  ],
+  "error": [
+    "error",
+    "error.code",
+    "error.message",
+    "error.request_id"
+  ]
+}

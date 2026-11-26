@@ -1,0 +1,23 @@
+[
+  {
+    "query": "Optimize Session.send",
+    "task": "Refactor Session.send to eliminate redundant proxy resolutions and reduce execution latency.",
+    "expected_target": "src.requests.sessions.Session.send",
+    "must_see": [
+      "src.requests.sessions.Session.send",
+      "src.requests.utils.resolve_proxies",
+      "src.requests.adapters.HTTPAdapter.send"
+    ],
+    "notes": "Primary dispatch method in sessions.py; relies on proxy resolution and adapter delegation across modules."
+  },
+  {
+    "query": "Explain HTTPBasicAuth header construction",
+    "task": "Explain how username and password credentials are converted into HTTP Basic Authorization headers.",
+    "expected_target": "src.requests.auth.HTTPBasicAuth",
+    "must_see": [
+      "src.requests.auth.HTTPBasicAuth",
+      "src.requests.auth._basic_auth_str"
+    ],
+    "notes": "Authentication helper in auth.py delegating to basic_auth_str helper function."
+  }
+]

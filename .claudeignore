@@ -1,0 +1,64 @@
+# ============================================
+# .claudeignore - Reduce project size for Claude Code
+# ============================================
+# Without these exclusions: ~220 MB
+# With these exclusions:    ~1.4 MB
+# ============================================
+
+# ---- Generated Data (209 MB / 95% of total) ----
+data/index/
+data/embeddings/
+data/graph/
+data/workspaces/
+
+# ---- Sample Repos (7.3 MB) ----
+sample_repos/
+sample_repo/
+
+# ---- Python cache / bytecode ----
+__pycache__/
+*.py[cod]
+*.pyc
+*$py.class
+
+# ---- Virtual environments ----
+venv/
+.venv/
+env/
+ENV/
+
+# ---- Test / coverage caches ----
+.pytest_cache/
+.mypy_cache/
+.tox/
+.coverage
+htmlcov/
+
+# ---- IDE / editor files ----
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---- Build / dist artifacts ----
+build/
+dist/
+*.egg-info/
+*.egg
+
+# ---- Binary / large files ----
+*.npy
+*.faiss
+*.db
+*.db-wal
+*.db-shm
+*.ai
+*.pack
+*.idx
+
+# ---- Scratch JSON outputs ----
+scratch_*.json
+
+# ---- OS files ----
+.DS_Store
+Thumbs.db
